@@ -1,0 +1,1079 @@
+{
+  "experiment": "Qwen3-0.6B synthetic HK stock buyback extraction",
+  "notice": "所有公告、公司、代码及数据均为虚构，仅用于课程实验。",
+  "created_at": "2026-07-14T23:53:39+08:00",
+  "mode": "all",
+  "model": "Qwen/Qwen3-0.6B",
+  "model_config_version": "4.51.0",
+  "environment": {
+    "python": "3.13.13",
+    "platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+    "torch": "2.10.0",
+    "transformers": "4.57.6",
+    "initial_device": "mps",
+    "final_device": "mps",
+    "model_load_seconds": 4.252505416996428,
+    "hf_home": "/Users/hush/Documents/OPC/AI_PM_Product/AI_agents/datawhale_agent_course/hello-agents/code/chapter3/.cache/huggingface"
+  },
+  "settings": {
+    "enable_thinking": false,
+    "max_new_tokens": 256,
+    "repeats": 3
+  },
+  "input": "【虚构测试公告】星海科技控股有限公司（09999.HK）公告：公司于2026年7月10日在香港交易所回购1,200,000股普通股，每股价格介于450.20港元至456.80港元，总代价约544,000,000港元。公告未披露股份注销日期。",
+  "gold_answer": {
+    "company": "星海科技控股有限公司",
+    "stock_code": "09999.HK",
+    "event_type": "股份回购",
+    "transaction_date": "2026-07-10",
+    "share_count": 1200000,
+    "price_min": 450.2,
+    "price_max": 456.8,
+    "total_amount": 544000000,
+    "currency": "HKD",
+    "cancellation_date": null,
+    "undisclosed_fields": [
+      "cancellation_date"
+    ]
+  },
+  "runs": [
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "greedy",
+      "repeat": 1,
+      "seed": 41,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": false
+      },
+      "input_tokens": 233,
+      "output_tokens": 132,
+      "latency_seconds": 4.3698279579984955,
+      "raw_output": "{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": [\"cancellation_date\"]\n}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "greedy",
+      "repeat": 2,
+      "seed": 42,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": false
+      },
+      "input_tokens": 233,
+      "output_tokens": 132,
+      "latency_seconds": 3.36714087499422,
+      "raw_output": "{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": [\"cancellation_date\"]\n}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "greedy",
+      "repeat": 3,
+      "seed": 43,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": false
+      },
+      "input_tokens": 233,
+      "output_tokens": 132,
+      "latency_seconds": 3.332270332997723,
+      "raw_output": "{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": [\"cancellation_date\"]\n}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "balanced",
+      "repeat": 1,
+      "seed": 41,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 233,
+      "output_tokens": 132,
+      "latency_seconds": 3.390186500000709,
+      "raw_output": "{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": [\"cancellation_date\"]\n}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "balanced",
+      "repeat": 2,
+      "seed": 42,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 233,
+      "output_tokens": 132,
+      "latency_seconds": 3.3651140419970034,
+      "raw_output": "```json\n{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": []\n}\n```",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": []
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 3,
+        "field_accuracy": 0.2727272727272727,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date",
+          "undisclosed_fields"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "balanced",
+      "repeat": 3,
+      "seed": 43,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 233,
+      "output_tokens": 136,
+      "latency_seconds": 3.509507125003438,
+      "raw_output": "```json\n{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": [\"cancellation_date\"]\n}\n```",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "creative",
+      "repeat": 1,
+      "seed": 41,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 1.2,
+        "top_p": 0.95,
+        "top_k": 50
+      },
+      "input_tokens": 233,
+      "output_tokens": 154,
+      "latency_seconds": 4.093509999998787,
+      "raw_output": "{\"company\": \"星海科技控股有限公司\", \"stock_code\": \"09999.HK\", \"event_type\": \"回购\", \"transaction_date\": \"2026-07-10\", \"share_count\": \"1,200,000\", \"price_min\": \"450.20\", \"price_max\": \"456.80\", \"total_amount\": \"544,000,000\", \"currency\": \"港元\", \"cancellation_date\": null, \"undisclosed_fields\": [\"event_type\", \"transaction_date\", \"stock_code\", \"event_type\", \"transaction_date\", \"stock_code\", \"event_type\", \"transaction_date\"]}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "cancellation_date": null,
+        "undisclosed_fields": [
+          "event_type",
+          "transaction_date",
+          "stock_code",
+          "event_type",
+          "transaction_date",
+          "stock_code",
+          "event_type",
+          "transaction_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 11,
+        "required_completeness": 1.0,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "undisclosed_fields"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "creative",
+      "repeat": 2,
+      "seed": 42,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 1.2,
+        "top_p": 0.95,
+        "top_k": 50
+      },
+      "input_tokens": 233,
+      "output_tokens": 132,
+      "latency_seconds": 3.378224792002584,
+      "raw_output": "```json\n{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": []\n}\n```",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": []
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 3,
+        "field_accuracy": 0.2727272727272727,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date",
+          "undisclosed_fields"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "creative",
+      "repeat": 3,
+      "seed": 43,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 1.2,
+        "top_p": 0.95,
+        "top_k": 50
+      },
+      "input_tokens": 233,
+      "output_tokens": 123,
+      "latency_seconds": 3.1460850419971393,
+      "raw_output": "{\"company\":\"星海科技控股有限公司\",\"stock_code\":\"09999.HK\",\"event_type\":\"回购\",\"transaction_date\":\"2026-07-10\",\"share_count\":\"1200000\",\"price_min\":\"450.20\",\"price_max\":\"456.80\",\"total_amount\":\"544000000\",\"currency\":\"HKD\",\"cancellation_date\":\"null\",\"undisclosed_fields\":[\"stock_code\",\"event_type\",\"transaction_date\",\"price_min\",\"price_max\",\"total_amount\",\"currency\",\"cancellation_date\"]}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1200000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544000000",
+        "currency": "HKD",
+        "cancellation_date": "null",
+        "undisclosed_fields": [
+          "stock_code",
+          "event_type",
+          "transaction_date",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 11,
+        "required_completeness": 1.0,
+        "hallucination_fields": 1,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "cancellation_date",
+          "undisclosed_fields"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "balanced",
+      "repeat": 1,
+      "seed": 41,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 233,
+      "output_tokens": 132,
+      "latency_seconds": 3.3769919170008507,
+      "raw_output": "{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": [\"cancellation_date\"]\n}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "balanced",
+      "repeat": 2,
+      "seed": 42,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 233,
+      "output_tokens": 132,
+      "latency_seconds": 3.4126541250006994,
+      "raw_output": "```json\n{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": []\n}\n```",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": []
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 3,
+        "field_accuracy": 0.2727272727272727,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date",
+          "undisclosed_fields"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "balanced",
+      "repeat": 3,
+      "seed": 43,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 233,
+      "output_tokens": 136,
+      "latency_seconds": 3.464857209000911,
+      "raw_output": "```json\n{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": [\"cancellation_date\"]\n}\n```",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "few_shot",
+      "sampling_strategy": "balanced",
+      "repeat": 1,
+      "seed": 41,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 415,
+      "output_tokens": 124,
+      "latency_seconds": 4.558445624999877,
+      "raw_output": "{\"company\": \"星海科技控股有限公司\", \"stock_code\": \"09999.HK\", \"event_type\": \"股份回购\", \"transaction_date\": \"2026-07-10\", \"share_count\": 1200000, \"price_min\": 450.20, \"price_max\": 456.80, \"total_amount\": 544000000, \"currency\": \"HKD\", \"cancellation_date\": null, \"undisclosed_fields\": [\"cancellation_date\"]}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "股份回购",
+        "transaction_date": "2026-07-10",
+        "share_count": 1200000,
+        "price_min": 450.2,
+        "price_max": 456.8,
+        "total_amount": 544000000,
+        "currency": "HKD",
+        "cancellation_date": null,
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 11,
+        "field_accuracy": 1.0,
+        "present_required_fields": 11,
+        "required_completeness": 1.0,
+        "hallucination_fields": 0,
+        "incorrect_fields": [],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "few_shot",
+      "sampling_strategy": "balanced",
+      "repeat": 2,
+      "seed": 42,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 415,
+      "output_tokens": 124,
+      "latency_seconds": 3.7289177079946967,
+      "raw_output": "{\"company\": \"星海科技控股有限公司\", \"stock_code\": \"09999.HK\", \"event_type\": \"股份回购\", \"transaction_date\": \"2026-07-10\", \"share_count\": 1200000, \"price_min\": 450.20, \"price_max\": 456.80, \"total_amount\": 544000000, \"currency\": \"HKD\", \"cancellation_date\": null, \"undisclosed_fields\": [\"cancellation_date\"]}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "股份回购",
+        "transaction_date": "2026-07-10",
+        "share_count": 1200000,
+        "price_min": 450.2,
+        "price_max": 456.8,
+        "total_amount": 544000000,
+        "currency": "HKD",
+        "cancellation_date": null,
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 11,
+        "field_accuracy": 1.0,
+        "present_required_fields": 11,
+        "required_completeness": 1.0,
+        "hallucination_fields": 0,
+        "incorrect_fields": [],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "few_shot",
+      "sampling_strategy": "balanced",
+      "repeat": 3,
+      "seed": 43,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 415,
+      "output_tokens": 124,
+      "latency_seconds": 3.7623223750051693,
+      "raw_output": "{\"company\": \"星海科技控股有限公司\", \"stock_code\": \"09999.HK\", \"event_type\": \"股份回购\", \"transaction_date\": \"2026-07-10\", \"share_count\": 1200000, \"price_min\": 450.20, \"price_max\": 456.80, \"total_amount\": 544000000, \"currency\": \"HKD\", \"cancellation_date\": null, \"undisclosed_fields\": [\"cancellation_date\"]}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "股份回购",
+        "transaction_date": "2026-07-10",
+        "share_count": 1200000,
+        "price_min": 450.2,
+        "price_max": 456.8,
+        "total_amount": 544000000,
+        "currency": "HKD",
+        "cancellation_date": null,
+        "undisclosed_fields": [
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 11,
+        "field_accuracy": 1.0,
+        "present_required_fields": 11,
+        "required_completeness": 1.0,
+        "hallucination_fields": 0,
+        "incorrect_fields": [],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "stepwise_cot",
+      "sampling_strategy": "balanced",
+      "repeat": 1,
+      "seed": 41,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 259,
+      "output_tokens": 154,
+      "latency_seconds": 4.5516599170005065,
+      "raw_output": "{\"company\": \"星海科技控股有限公司\", \"stock_code\": \"09999.HK\", \"event_type\": \"回购\", \"transaction_date\": \"2026-07-10\", \"share_count\": \"1,200,000\", \"price_min\": \"450.20\", \"price_max\": \"456.80\", \"total_amount\": \"544,000,000\", \"currency\": \"港元\", \"cancellation_date\": null, \"undisclosed_fields\": [\"event_type\", \"transaction_date\", \"share_count\", \"price_min\", \"price_max\", \"total_amount\", \"currency\", \"cancellation_date\"]}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "cancellation_date": null,
+        "undisclosed_fields": [
+          "event_type",
+          "transaction_date",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 11,
+        "required_completeness": 1.0,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "undisclosed_fields"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "stepwise_cot",
+      "sampling_strategy": "balanced",
+      "repeat": 2,
+      "seed": 42,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 259,
+      "output_tokens": 132,
+      "latency_seconds": 3.5163636670040432,
+      "raw_output": "```json\n{\n  \"company\": \"星海科技控股有限公司\",\n  \"stock_code\": \"09999.HK\",\n  \"event_type\": \"回购\",\n  \"transaction_date\": \"2026-07-10\",\n  \"share_count\": \"1,200,000\",\n  \"price_min\": \"450.20\",\n  \"price_max\": \"456.80\",\n  \"total_amount\": \"544,000,000\",\n  \"currency\": \"港元\",\n  \"undisclosed_fields\": []\n}\n```",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "undisclosed_fields": []
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 3,
+        "field_accuracy": 0.2727272727272727,
+        "present_required_fields": 10,
+        "required_completeness": 0.9090909090909091,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date",
+          "undisclosed_fields"
+        ],
+        "unexpected_fields": []
+      }
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "stepwise_cot",
+      "sampling_strategy": "balanced",
+      "repeat": 3,
+      "seed": 43,
+      "device": "mps",
+      "parameters": {
+        "max_new_tokens": 256,
+        "pad_token_id": 151645,
+        "do_sample": true,
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20
+      },
+      "input_tokens": 259,
+      "output_tokens": 154,
+      "latency_seconds": 4.175986207999813,
+      "raw_output": "{\"company\": \"星海科技控股有限公司\", \"stock_code\": \"09999.HK\", \"event_type\": \"回购\", \"transaction_date\": \"2026-07-10\", \"share_count\": \"1,200,000\", \"price_min\": \"450.20\", \"price_max\": \"456.80\", \"total_amount\": \"544,000,000\", \"currency\": \"港元\", \"cancellation_date\": null, \"undisclosed_fields\": [\"event_type\", \"transaction_date\", \"share_count\", \"price_min\", \"price_max\", \"total_amount\", \"currency\", \"cancellation_date\"]}",
+      "parsed_output": {
+        "company": "星海科技控股有限公司",
+        "stock_code": "09999.HK",
+        "event_type": "回购",
+        "transaction_date": "2026-07-10",
+        "share_count": "1,200,000",
+        "price_min": "450.20",
+        "price_max": "456.80",
+        "total_amount": "544,000,000",
+        "currency": "港元",
+        "cancellation_date": null,
+        "undisclosed_fields": [
+          "event_type",
+          "transaction_date",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "cancellation_date"
+        ]
+      },
+      "parse_error": null,
+      "metrics": {
+        "json_valid": true,
+        "correct_fields": 4,
+        "field_accuracy": 0.36363636363636365,
+        "present_required_fields": 11,
+        "required_completeness": 1.0,
+        "hallucination_fields": 0,
+        "incorrect_fields": [
+          "event_type",
+          "share_count",
+          "price_min",
+          "price_max",
+          "total_amount",
+          "currency",
+          "undisclosed_fields"
+        ],
+        "unexpected_fields": []
+      }
+    }
+  ],
+  "summary": [
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "greedy",
+      "runs": 3,
+      "json_parse_success_rate": 1.0,
+      "average_field_accuracy": 0.3636363636363636,
+      "average_required_completeness": 0.9090909090909091,
+      "total_hallucination_fields": 0,
+      "output_consistency": 1.0,
+      "average_input_tokens": 233.0,
+      "average_output_tokens": 132.0,
+      "average_latency_seconds": 3.6897463886634796
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "balanced",
+      "runs": 3,
+      "json_parse_success_rate": 1.0,
+      "average_field_accuracy": 0.3333333333333333,
+      "average_required_completeness": 0.9090909090909091,
+      "total_hallucination_fields": 0,
+      "output_consistency": 0.6666666666666666,
+      "average_input_tokens": 233.0,
+      "average_output_tokens": 133.33333333333334,
+      "average_latency_seconds": 3.42160255566705
+    },
+    {
+      "experiment_type": "sampling",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "creative",
+      "runs": 3,
+      "json_parse_success_rate": 1.0,
+      "average_field_accuracy": 0.3333333333333333,
+      "average_required_completeness": 0.9696969696969697,
+      "total_hallucination_fields": 1,
+      "output_consistency": 0.3333333333333333,
+      "average_input_tokens": 233.0,
+      "average_output_tokens": 136.33333333333334,
+      "average_latency_seconds": 3.5392732779995035
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "zero_shot",
+      "sampling_strategy": "balanced",
+      "runs": 3,
+      "json_parse_success_rate": 1.0,
+      "average_field_accuracy": 0.3333333333333333,
+      "average_required_completeness": 0.9090909090909091,
+      "total_hallucination_fields": 0,
+      "output_consistency": 0.6666666666666666,
+      "average_input_tokens": 233.0,
+      "average_output_tokens": 133.33333333333334,
+      "average_latency_seconds": 3.418167750334154
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "few_shot",
+      "sampling_strategy": "balanced",
+      "runs": 3,
+      "json_parse_success_rate": 1.0,
+      "average_field_accuracy": 1.0,
+      "average_required_completeness": 1.0,
+      "total_hallucination_fields": 0,
+      "output_consistency": 1.0,
+      "average_input_tokens": 415.0,
+      "average_output_tokens": 124.0,
+      "average_latency_seconds": 4.016561902666581
+    },
+    {
+      "experiment_type": "prompt",
+      "prompt_strategy": "stepwise_cot",
+      "sampling_strategy": "balanced",
+      "runs": 3,
+      "json_parse_success_rate": 1.0,
+      "average_field_accuracy": 0.3333333333333333,
+      "average_required_completeness": 0.9696969696969697,
+      "total_hallucination_fields": 0,
+      "output_consistency": 0.6666666666666666,
+      "average_input_tokens": 259.0,
+      "average_output_tokens": 146.66666666666666,
+      "average_latency_seconds": 4.081336597334787
+    }
+  ]
+}
