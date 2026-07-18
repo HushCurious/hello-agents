@@ -9,9 +9,12 @@ import random
 from typing import List, Dict, Optional
 
 from agentscope.agent import ReActAgent
-from agentscope.model import DashScopeChatModel
+from agentscope.model import DashScopeChatModel, OpenAIChatModel
 from agentscope.pipeline import MsgHub, sequential_pipeline, fanout_pipeline
-from agentscope.formatter import DashScopeMultiAgentFormatter
+from agentscope.formatter import (
+    DashScopeMultiAgentFormatter,
+    OpenAIMultiAgentFormatter,
+)
 
 from prompt_cn import ChinesePrompts
 from game_roles import GameRoles
@@ -56,16 +59,28 @@ class ThreeKingdomsWerewolfGame:
         """创建具有三国背景的玩家"""
         name = get_chinese_name(character)
         self.roles[name] = role
+
+        if os.getenv("DASHSCOPE_API_KEY"):
+            model = DashScopeChatModel(
+                model_name="qwen-max",
+                api_key=os.environ["DASHSCOPE_API_KEY"],
+                enable_thinking=True,
+            )
+            formatter = DashScopeMultiAgentFormatter()
+        else:
+            model = OpenAIChatModel(
+                model_name=os.environ["LLM_MODEL_ID"],
+                api_key=os.environ["LLM_API_KEY"],
+                stream=False,
+                client_args={"base_url": os.environ["LLM_BASE_URL"]},
+            )
+            formatter = OpenAIMultiAgentFormatter()
         
         agent = ReActAgent(
             name=name,
             sys_prompt=ChinesePrompts.get_role_prompt(role, character),
-            model=DashScopeChatModel(
-                model_name="qwen-max",
-                api_key=os.environ["DASHSCOPE_API_KEY"],
-                enable_thinking=True,
-            ),
-            formatter=DashScopeMultiAgentFormatter(),
+            model=model,
+            formatter=formatter,
         )
         
         # 角色身份确认
@@ -367,9 +382,20 @@ class ThreeKingdomsWerewolfGame:
 
 async def main():
     """主函数"""
-    # 检查环境变量
-    if "DASHSCOPE_API_KEY" not in os.environ:
-        print("❌ 请设置环境变量 DASHSCOPE_API_KEY")
+    # DashScope and OpenAI-compatible services are both supported.
+    openai_compatible_keys = {
+        "LLM_MODEL_ID",
+        "LLM_API_KEY",
+        "LLM_BASE_URL",
+    }
+    if (
+        "DASHSCOPE_API_KEY" not in os.environ
+        and not openai_compatible_keys.issubset(os.environ)
+    ):
+        print(
+            "❌ 请设置 DASHSCOPE_API_KEY，或配置 "
+            "LLM_MODEL_ID / LLM_API_KEY / LLM_BASE_URL"
+        )
         return
     
     print("🎮 欢迎来到三国狼人杀！")

@@ -9,11 +9,23 @@ import os
 load_dotenv()
 LLM_API_KEY = os.getenv("LLM_API_KEY")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL")
-LLM_MODEL = os.getenv("LLM_MODEL")
+LLM_MODEL = os.getenv("LLM_MODEL") or os.getenv("LLM_MODEL_ID")
+
+if not all([LLM_API_KEY, LLM_BASE_URL, LLM_MODEL]):
+    raise ValueError(
+        "请在 .env 中配置 LLM_API_KEY、LLM_BASE_URL，以及 LLM_MODEL 或 LLM_MODEL_ID"
+    )
+
+# 百炼/Qwen 使用原教程的平台配置；其他 OpenAI 兼容接口使用通用适配器。
+model_platform = (
+    ModelPlatformType.QWEN
+    if "dashscope" in LLM_BASE_URL.lower()
+    else ModelPlatformType.OPENAI_COMPATIBLE_MODEL
+)
 
 #创建模型,在这里以Qwen为例,调用的百炼大模型平台API
 model = ModelFactory.create(
-    model_platform=ModelPlatformType.QWEN,
+    model_platform=model_platform,
     model_type=LLM_MODEL,
     url=LLM_BASE_URL,
     api_key=LLM_API_KEY
@@ -43,7 +55,7 @@ role_play_session = RolePlaying(
 print(Fore.CYAN + f"具体任务描述:\n{role_play_session.task_prompt}\n")
 
 # 开始协作对话
-chat_turn_limit, n = 30, 0
+chat_turn_limit, n = int(os.getenv("CAMEL_CHAT_TURN_LIMIT", "30")), 0
 input_msg = role_play_session.init_chat()
 
 while n < chat_turn_limit:
